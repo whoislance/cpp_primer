@@ -1,2 +1,5 @@
-# cpp_primer
-c++ primer 5th
+# 第1章 开始
+- 输入输出
+
+    cin, cout, cerr, clog
+- 
