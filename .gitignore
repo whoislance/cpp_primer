@@ -1,9 +1,0 @@
-## ignore exe files
-# Ignore all
-*
-# Unignore all with extensions
-!*.*
-# Unignore all dirs
-!*/
-
-/.vscode/
