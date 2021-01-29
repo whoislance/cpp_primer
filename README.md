@@ -96,3 +96,58 @@
 
   
 
+# 第3章 字符串、向量和数组
+
+- using声明
+
+  `using namespace：：name;`  每行声明一个name
+
+  头文件不要包含using声明
+
+- string
+
+  ```c
+  string s(10, 'c');  // 10个c
+  ```
+
+  | 操作           |                                           |
+  | -------------- | ----------------------------------------- |
+  | os<<s          | 把s写到输出流os中，返回os                 |
+  | is>>s          | 从is中读取字符串赋值给s，字符串以空白分割 |
+  | getline(is, s) | 从is中读取一行赋值给s，返回is             |
+  | <, <=, >, >=   | 比较字典序，对大小写敏感                  |
+
+  字符串字面值与string是不同的类型，所以计数变量的定义：
+
+  `decltype(s.size()) cnt = 0;`
+
+- 处理字符
+
+  | 头文件： cctype |                    |
+  | --------------- | ------------------ |
+  | isalnum(c)      | 字母或数字         |
+  | isalpha(c)      | 字母               |
+  | isdigit(c)      | 数字               |
+  | ispunct(c)      | 标点符号           |
+  | isspace(c)      | 空格、制表符、回车 |
+  | islower(c)      | 是小写             |
+  | isupper(c)      | 是大写             |
+  | tolower(c)      | 转小写             |
+  | toupper(c)      | 转大写             |
+
+- vector
+
+  - 初始化
+
+    ```
+    vector<T> v(n, val);
+    vector<T> v = {a, b, c, d};
+    vector<T> v(v_copy);
+    ```
+
+- 迭代器
+
+
+
+
+  
