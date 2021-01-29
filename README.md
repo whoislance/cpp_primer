@@ -147,7 +147,107 @@
 
 - 迭代器
 
+  - 箭头运算符`->`
 
+    把解引用和成员访问结合起来
 
+    `iter->mem` 等价于 `(*iter).mem`
 
-  
+  - 迭代器类型：
+
+    ```cpp
+    vector<int>::iterator it;
+    string::const_iterator it;
+    auto it = v.cbegin(); // it的类型是vector<int>::const_iterator
+    ```
+
+  - 迭代器失效
+
+    使用了迭代器的循环体，内部不要向容器添加元素
+
+  - 迭代器比较
+
+    如果it1的位置比it2的位置靠前，那说`it1 < it2`
+
+    两个迭代器相减，得到二者的距离，类型是`difference_type`，可负可正
+
+    ```cpp
+    auto b = end(arr) - begin(arr);
+    ```
+
+    两个指针相减的结果的类型是`ptrdiff_t`，可正可负
+
+  - 迭代器实现二分搜索
+
+    ```cpp
+    auto beg = v.begin(), end = v.end();
+    auto mid = v.begin() + (end - beg) / 2;
+    while(mid != end && *mid != target) {
+        if(*mid > target) 
+            end = mid;
+        else
+            beg = mid + 1;
+        mid = beg + (end - beg) / 2;
+    }
+    ```
+
+- 数组
+
+  - 指针
+
+    数组类型的对象其实就是一个指向该数组首元素的指针
+
+    ```cpp
+    string nums[] = {"sd", "sfds"};
+    // 那么 nums 就是 &sums[0]
+    
+    int *p[10]; // p是含有10个整型指针的数组
+    int (*p)[10]; // p指向一个含有10个整数的数组
+    ```
+
+  - 空间大小是常量
+
+    ```cpp
+    unsigned a = 42;  // 普通变量
+    constexpr unsigned b = 42; // 常量表达式
+    const unsigned c = 42;
+    string s[a], s[b], s[c]; // 书上说s[a]是不对的，但编译通过了
+    ```
+
+  - 字符数组
+
+    字符串末尾会有一个空字符，所以总长度比看起来多1
+
+    ```cpp
+    contst char a[6] = "abcdef"; // 错误，没有空间存放'\0'
+    ```
+
+  - size_t
+
+    `size_t`类型是无符号类型，在遍历数组时定义下标
+
+  - 函数begin和函数end
+
+    ```cpp
+    int ia[] = {0, 1, 2};
+    int *pbeg = begin(ia);
+    int *pend = end(ia);
+    while(pbeg != pend) {
+    	++pbeg;
+    }
+    ```
+
+  - C风格字符串
+
+    不建议使用，不安全
+
+    ```cpp
+    strcmp(p1, p2) 比较p1 p2相等性，返回正负数、0
+    strcat(p1, p2) return p1 + p2
+    strcpy(p1, p2) return p1 = p2
+    ```
+
+  - 与C风格的接口
+
+    - 返回C风格的字符串： `s.c_str()`
+
